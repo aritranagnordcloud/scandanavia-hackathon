@@ -1,11 +1,4 @@
-import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
-import * as express from 'express';
-
-
-
-
-
 
 
 
@@ -17,8 +10,8 @@ export async function  addContact (req, res){
         const docRef = admin.firestore().collection('users').doc(req.body['email']);
 
         await docRef.set({
-            first: req.body['firstName'],
-            last: req.body['lastName'],
+            firstName: req.body['firstName'],
+            lastName: req.body['lastName'],
             email: req.body['email']
         });
 
@@ -30,13 +23,16 @@ export async function  addContact (req, res){
 }
 
 
+
+
+
 export async function  updateContact (req, res){
     try {
         const docRef = admin.firestore().collection('users').doc(req.params.email);
 
         await docRef.update({
-            first: req.body['firstName'],
-            last: req.body['lastName'],
+            firstName: req.body['firstName'],
+            lastName: req.body['lastName'],
             email: req.body['email']
         });
         res.status(204).send("Updated a new contact:" + req.params.email);
@@ -80,39 +76,47 @@ export async function  viewAllContacts (req, res){
         return res.status(400).send(error)
     }
 }
-/* 
+
+
+
+export async function  queryContact (email){
+    try {
+    const docRef = admin.firestore().collection('users').doc(String(email));
+    const doc = await docRef.get();
+    if (!doc.exists) {
+        console.log('No such document!');
+        return 'No such document!';
+    } else {
+        return doc.data();
+    }
+    } catch (error) {
+        console.log(error)
+        return error
+    }
+}
+
+export async function  mutateContact (input){
+
+    try {
+        console.log(input)
+        const docRef = admin.firestore().collection('users').doc(input.email);
+
+        await docRef.set({
+            firstName: input.firstName,
+            lastName: input.lastName,
+            email: input.email
+        });
+
+        return input
+    } catch (error) {
+        console.log(error)
+        return error
+    }
+}
 
 
 
 
-
-
-
-app.get('/listplaces', async (req, res) => {
-    var query = req.body['query']
-    var country = req.body['country']
-    var currency = req.body['currency']
-    var locale = req.body['locale']
-
-    const options = {
-        method: 'GET',
-        url: 'https://'+api_host+'/apiservices/autosuggest/v1.0/'+country+'/'+currency+'/'+locale+'/',
-        qs: {query: query},
-        headers: {
-          'x-rapidapi-key': api_key,
-          'x-rapidapi-host': api_host,
-          useQueryString: true
-        }
-      };
-      
-      request(options, function (error, response, body) {
-          if (error) throw new Error(error);
-      
-          res.setHeader('Content-Type', 'application/json');
-          res.status(200).send(body);
-      });   
-})
- */
 
 
 

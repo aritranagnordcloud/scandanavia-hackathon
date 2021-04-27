@@ -2,6 +2,8 @@ import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
 import * as express from 'express';
 import * as bodyParser from "body-parser";
+import gqlServer from "./graphql/server";
+
 import { addContact, updateContact, viewContact, viewAllContacts } from './contacts';
 import {listplaces,listcurrencies} from './skyscanner-apis'
 
@@ -13,7 +15,7 @@ admin.initializeApp();
 main.use(bodyParser.json());
 main.use(bodyParser.urlencoded({ extended: false }));
 main.use('/api/v1', app);
-
+main.use(gqlServer());
 
 
 
