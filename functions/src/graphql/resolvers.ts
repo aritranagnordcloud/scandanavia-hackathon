@@ -1,5 +1,5 @@
 
-import { queryContact ,mutateContact } from '../contacts';
+import { queryContact ,mutateContact } from '../functions/index';
 
 
 const resolverFunctions = {
