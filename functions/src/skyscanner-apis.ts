@@ -1,6 +1,7 @@
 
 import * as request from "request";
 import * as unirest from "unirest";
+import * as admin from 'firebase-admin';
 
 var api_key = "2b0dffa068mshdb868caff516f00p1a40d1jsnfd9db792b255";
 var api_host = "skyscanner-skyscanner-flight-search-v1.p.rapidapi.com";
@@ -239,7 +240,8 @@ export async function browseroutes(req, res) {
         var inboundpartialdate = req.body.inboundpartialdate
         var destinationplace = req.body.destinationplace
         var outboundpartialdate = req.body.outboundpartialdate
-        var request = unirest("GET", "https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browseroutes/v1.0/"+ country + '/' + currency + '/' + locale + '/' + originplace + '/' + destinationplace + '/'+ outboundpartialdate + '/' );
+        var url = "https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browseroutes/v1.0/"+ country + '/' + currency + '/' + locale + '/' + originplace + '/' + destinationplace + '/'+ outboundpartialdate + '/';
+        var request = unirest("GET",url);
 
         request.query({
             "inboundpartialdate": inboundpartialdate
@@ -255,9 +257,18 @@ export async function browseroutes(req, res) {
         request.end(function (response) {
             if (response.error) throw new Error(response.error);
 
-            console.log(response.body);
+
+
+            // set value for return with URL:
+            if (req.body.useremail!=undefined){
+                updateUserDatabase(req,response.body,url);
+            }
+            
+
             res.setHeader('Content-Type', 'application/json');
-            return res.status(200).send(response.body);
+            let finalresponse = {"skyscanner_res":response.body,"fullUrl":url}
+            console.log(finalresponse)
+            return res.status(200).send(finalresponse);
         });
 
     } catch (error) {
@@ -266,6 +277,23 @@ export async function browseroutes(req, res) {
     }
 }
 
+
+async function updateUserDatabase(req: any,apiRes:any,url:any) {
+    const updatedCollections: string[] = [];
+    var uniquevalue = req.body.originplace + "#" + req.body.destinationplace;
+    console.log(uniquevalue)
+    console.log(req.body.useremail)
+
+    const docRef = await admin.firestore().collection('userquery').doc(req.body.useremail).collection(uniquevalue).where('resolved', '!=', true).get();
+    docRef.forEach(collection => {
+        console.log('Found subcollection with id:', collection.id);
+        updatedCollections.push(collection.id);
+        admin.firestore().collection('userquery').doc(req.body.useremail).collection(uniquevalue).doc(collection.id).update({
+            skyscanner_res: apiRes,
+            fullUrl: url
+        });
+    });
+}
 
 export async function browsequotes(req, res) {
     try {

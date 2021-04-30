@@ -2,12 +2,12 @@
 import { queryContact ,mutateContact } from '../functions/index';
 
 
+
 const resolverFunctions = {
   Query: {
     hello: () => 'world',
     getContact: async (_, { email }) => {
       var result = await queryContact(email)
-      console.log(result)
       return result;
     }
   },
@@ -18,8 +18,8 @@ const resolverFunctions = {
       var result = mutateContact(obj.input);
       console.log(result);
       return result;
-      
-    }
+    },
+    
   }
 };
 

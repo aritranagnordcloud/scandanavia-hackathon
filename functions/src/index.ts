@@ -4,9 +4,10 @@ import * as express from 'express';
 import * as bodyParser from "body-parser";
 import gqlServer from "./graphql/server";
 
-import { addContact, updateContact, viewContact, viewAllContacts } from './contacts';
+import { addContact, updateContact, viewContact, viewAllContacts} from './contacts';
 import {listplaces,listcurrencies , browseroutesinbound,browsequotesinbound,browsedatesinbound,browsedates,browseroutes,browsequotes, listmarkets} from './skyscanner-apis'
-
+import {updateuserquery,senduserquery,fetchuserquery} from './user-config';
+import {shortenurlofapi} from './tinyurl';
 
 const app = express();
 const main = express();
@@ -28,6 +29,7 @@ export const webApi = functions.https.onRequest(main);
 app.post('/contacts', async (req, res) => {
     return addContact(req, res);
 })
+
 
 // Update new contact
 app.patch('/contacts/:email', async (req, res) => {
@@ -80,6 +82,24 @@ app.post('/browsequotes', async (req, res) => {
 })
 /******************** SkyScanner***********************/
 
+/******************** Reading User Config***********************/
+app.post('/senduserquery', async (req, res) => {
+    return senduserquery(req, res);
+})
+app.get('/fetchuserquery', async (req, res) => {
+    return fetchuserquery(req, res);
+})
+// Processed Records
+app.post('/updateuserquery', async (req, res) => {
+    return updateuserquery(req, res);
+})
+/******************** Reading User Config***********************/
+
+/********************Tiny URL***********************/
+app.post('/shortenurlofapi', async (req, res) => {
+    return shortenurlofapi(req, res);
+})
+/******************** Tiny URL***********************/
 
 
 
