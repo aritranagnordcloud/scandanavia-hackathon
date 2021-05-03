@@ -20,7 +20,7 @@ export async function shortenurlofapi(req, res) {
                 'Authorization': 'Bearer U5dbD3nZIpxeP1sZZbJU8FhOzsfOJ3L9u9r11TVw37w3xP6WBzcPbnAkw1VQ',
                 'Content-Type': 'application/json'
             })
-            .send({ "url": fullUrl, "alias":base64String })
+            .send({ "url": fullUrl+"/"+base64String, "alias":base64String })
             .then((response) => {
                 console.log(response.body);
                 res.setHeader('Content-Type', 'application/json');
