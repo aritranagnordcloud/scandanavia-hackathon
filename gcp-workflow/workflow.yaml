@@ -1,0 +1,60 @@
+main:
+  params: [args]
+  steps:
+    - readuserconfig:
+        call: http.get
+        args:
+            url: https://us-central1-workflows-backend.cloudfunctions.net/webApi/api/v1/fetchuserquery
+            query:
+                email: ${args.email}
+                originplace: ${args.originplace}
+                destinationplace: ${args.destinationplace}
+        result: response
+    - fetchroutes:
+        call: http.post
+        args:
+            url: https://us-central1-workflows-backend.cloudfunctions.net/webApi/api/v1/browseroutes
+            body:
+                useremail: ${args.email}
+                inboundpartialdate: ${response.body[0].inboundpartialdate}
+                country: ${response.body[0].country}
+                currency: ${response.body[0].currency}
+                locale: ${response.body[0].locale}
+                originplace: ${response.body[0].originplace}
+                destinationplace: ${response.body[0].destinationplace}
+                outboundpartialdate: ${response.body[0].outboundpartialdate}
+        result: sendOutputToUrl
+    - shortenurlofapi:
+        call: http.post
+        args:
+            url: https://us-central1-workflows-backend.cloudfunctions.net/webApi/api/v1/shortenurlofapi
+            body:
+                fullUrl: ${sendOutputToUrl.body.fullUrl}
+        result: shortendurlresponse
+    - publishTinyURL:
+        call: googleapis.pubsub.v1.projects.topics.publish
+        args:
+            topic: projects/workflows-backend/topics/publishToESP
+            body:
+                messages:
+                - data: ${base64.encode(text.encode(json.encode_to_string(shortendurlresponse.body.data.tiny_url)))}
+        result: publishResult
+    - publishToUO:
+        call: googleapis.pubsub.v1.projects.topics.publish
+        args:
+            topic: projects/workflows-backend/topics/publishToUIDevice
+            body:
+                messages:
+                - data: ${base64.encode(text.encode(json.encode_to_string(sendOutputToUrl.body.skyscanner_res)))}
+        result: publishResult
+    - updateuserquery:
+        call: http.post
+        args:
+            url: https://us-central1-workflows-backend.cloudfunctions.net/webApi/api/v1/updateuserquery
+            body:
+                email: ${args.email}
+                originplace: ${args.originplace}
+                destinationplace: ${args.destinationplace}
+        result: message
+    - last:
+        return: ${message}

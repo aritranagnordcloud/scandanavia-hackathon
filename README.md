@@ -5,5 +5,8 @@
 - cd functions
 - npm stop
 - firebase emulators:start
+- npm run localrun
 3. Deploying the functions 
 - firebase deploy --only functions
+
+
