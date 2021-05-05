@@ -1,0 +1,971 @@
+{
+	"info": {
+		"_postman_id": "739b159a-50f7-4b20-8b75-770426a55968",
+		"name": "Hackathon",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Basic API",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Contact",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "firstName",
+							"value": "Pritama",
+							"type": "text"
+						},
+						{
+							"key": "lastName",
+							"value": "Sarkar",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "pritama07@gmail.com",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://us-central1-workflows-backend.cloudfunctions.net/webApi/api/v1/contacts",
+					"protocol": "https",
+					"host": [
+						"us-central1-workflows-backend",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"webApi",
+						"api",
+						"v1",
+						"contacts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Contact",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "firstName",
+							"value": "Pritama",
+							"type": "text"
+						},
+						{
+							"key": "lastName",
+							"value": "Sarkar",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "pritama07@gmail.com",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://us-central1-workflows-backend.cloudfunctions.net/webApi/api/v1/contacts/pritama07@gmail.com",
+					"protocol": "https",
+					"host": [
+						"us-central1-workflows-backend",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"webApi",
+						"api",
+						"v1",
+						"contacts",
+						"pritama07@gmail.com"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Contacts",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://us-central1-workflows-backend.cloudfunctions.net/webApi/api/v1/contacts",
+					"protocol": "https",
+					"host": [
+						"us-central1-workflows-backend",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"webApi",
+						"api",
+						"v1",
+						"contacts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Single Contact",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://us-central1-workflows-backend.cloudfunctions.net/webApi/api/v1/contact/email?email=pritama07@gmail.com",
+					"protocol": "https",
+					"host": [
+						"us-central1-workflows-backend",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"webApi",
+						"api",
+						"v1",
+						"contact",
+						"email"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "pritama07@gmail.com"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Mutate Contact",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation {\n  createContact(input: {firstName:\"Bhagwan\" ,lastName:\"Kumar\",\n  email:\"jokumar@deloitte.com\"})\n\t{\n    email\n  }\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "https://us-central1-workflows-backend.cloudfunctions.net/webApi/",
+					"protocol": "https",
+					"host": [
+						"us-central1-workflows-backend",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"webApi",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Query Contact",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query{\n    getContact(email:\"jokumar@deloitte.com\"){\n        firstName\n    }\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "https://us-central1-workflows-backend.cloudfunctions.net/webApi/",
+					"protocol": "https",
+					"host": [
+						"us-central1-workflows-backend",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"webApi",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List Currencies",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://us-central1-workflows-backend.cloudfunctions.net/webApi/api/v1/listcurrencies",
+					"protocol": "https",
+					"host": [
+						"us-central1-workflows-backend",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"webApi",
+						"api",
+						"v1",
+						"listcurrencies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List Places",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "query",
+							"value": "Stockholm",
+							"type": "text"
+						},
+						{
+							"key": "country",
+							"value": "UK",
+							"type": "text"
+						},
+						{
+							"key": "currency",
+							"value": "GBP",
+							"type": "text"
+						},
+						{
+							"key": "locale",
+							"value": "en-GB",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://us-central1-workflows-backend.cloudfunctions.net/webApi/api/v1/listplaces",
+					"protocol": "https",
+					"host": [
+						"us-central1-workflows-backend",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"webApi",
+						"api",
+						"v1",
+						"listplaces"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BrowseRoutesInbound",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "inboundpartialdate",
+							"value": "anytime",
+							"type": "text"
+						},
+						{
+							"key": "cabinClass",
+							"value": "business",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "children",
+							"value": "0",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "infants",
+							"value": "0",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "country",
+							"value": "IN",
+							"type": "text"
+						},
+						{
+							"key": "currency",
+							"value": "INR",
+							"type": "text"
+						},
+						{
+							"key": "locale",
+							"value": "en-US",
+							"type": "text"
+						},
+						{
+							"key": "originplace",
+							"value": "IDEL-sky",
+							"type": "text"
+						},
+						{
+							"key": "destinationplace",
+							"value": "ICCU-sky",
+							"type": "text"
+						},
+						{
+							"key": "outboundpartialdate",
+							"value": "anytime",
+							"type": "text"
+						},
+						{
+							"key": "adults",
+							"value": "1",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "https://us-central1-workflows-backend.cloudfunctions.net/webApi/api/v1/browseroutesinbound",
+					"protocol": "https",
+					"host": [
+						"us-central1-workflows-backend",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"webApi",
+						"api",
+						"v1",
+						"browseroutesinbound"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BrowseQuotesInbound",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "inboundpartialdate",
+							"value": "anytime",
+							"type": "text"
+						},
+						{
+							"key": "cabinClass",
+							"value": "business",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "children",
+							"value": "0",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "infants",
+							"value": "0",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "country",
+							"value": "IN",
+							"type": "text"
+						},
+						{
+							"key": "currency",
+							"value": "INR",
+							"type": "text"
+						},
+						{
+							"key": "locale",
+							"value": "en-US",
+							"type": "text"
+						},
+						{
+							"key": "originplace",
+							"value": "IDEL-sky",
+							"type": "text"
+						},
+						{
+							"key": "destinationplace",
+							"value": "ICCU-sky",
+							"type": "text"
+						},
+						{
+							"key": "outboundpartialdate",
+							"value": "anytime",
+							"type": "text"
+						},
+						{
+							"key": "adults",
+							"value": "1",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "https://us-central1-workflows-backend.cloudfunctions.net/webApi/api/v1/browsequotesinbound",
+					"protocol": "https",
+					"host": [
+						"us-central1-workflows-backend",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"webApi",
+						"api",
+						"v1",
+						"browsequotesinbound"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BrowseDatesInbound",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "inboundpartialdate",
+							"value": "anytime",
+							"type": "text"
+						},
+						{
+							"key": "cabinClass",
+							"value": "business",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "children",
+							"value": "0",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "infants",
+							"value": "0",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "country",
+							"value": "IN",
+							"type": "text"
+						},
+						{
+							"key": "currency",
+							"value": "INR",
+							"type": "text"
+						},
+						{
+							"key": "locale",
+							"value": "en-US",
+							"type": "text"
+						},
+						{
+							"key": "originplace",
+							"value": "IDEL-sky",
+							"type": "text"
+						},
+						{
+							"key": "destinationplace",
+							"value": "ICCU-sky",
+							"type": "text"
+						},
+						{
+							"key": "outboundpartialdate",
+							"value": "anytime",
+							"type": "text"
+						},
+						{
+							"key": "adults",
+							"value": "1",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "https://us-central1-workflows-backend.cloudfunctions.net/webApi/api/v1/browsequotesinbound",
+					"protocol": "https",
+					"host": [
+						"us-central1-workflows-backend",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"webApi",
+						"api",
+						"v1",
+						"browsequotesinbound"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BrowseDates",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "inboundpartialdate",
+							"value": "anytime",
+							"type": "text"
+						},
+						{
+							"key": "cabinClass",
+							"value": "business",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "children",
+							"value": "0",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "infants",
+							"value": "0",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "country",
+							"value": "IN",
+							"type": "text"
+						},
+						{
+							"key": "currency",
+							"value": "INR",
+							"type": "text"
+						},
+						{
+							"key": "locale",
+							"value": "en-US",
+							"type": "text"
+						},
+						{
+							"key": "originplace",
+							"value": "IDEL-sky",
+							"type": "text"
+						},
+						{
+							"key": "destinationplace",
+							"value": "ICCU-sky",
+							"type": "text"
+						},
+						{
+							"key": "outboundpartialdate",
+							"value": "anytime",
+							"type": "text"
+						},
+						{
+							"key": "adults",
+							"value": "1",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "https://us-central1-workflows-backend.cloudfunctions.net/webApi/api/v1/browsedates",
+					"protocol": "https",
+					"host": [
+						"us-central1-workflows-backend",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"webApi",
+						"api",
+						"v1",
+						"browsedates"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BrowseRoutes",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "inboundpartialdate",
+							"value": "anytime",
+							"type": "text"
+						},
+						{
+							"key": "country",
+							"value": "SE",
+							"type": "text"
+						},
+						{
+							"key": "currency",
+							"value": "SEK",
+							"type": "text"
+						},
+						{
+							"key": "locale",
+							"value": "en-US",
+							"type": "text"
+						},
+						{
+							"key": "originplace",
+							"value": "STOC-sky",
+							"type": "text"
+						},
+						{
+							"key": "destinationplace",
+							"value": "GOTH-sky",
+							"type": "text"
+						},
+						{
+							"key": "outboundpartialdate",
+							"value": "anytime",
+							"type": "text"
+						},
+						{
+							"key": "useremail",
+							"value": "aritranag20@gmail.com",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://us-central1-workflows-backend.cloudfunctions.net/webApi/api/v1/browseroutes",
+					"protocol": "https",
+					"host": [
+						"us-central1-workflows-backend",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"webApi",
+						"api",
+						"v1",
+						"browseroutes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BrowseQuotes",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "inboundpartialdate",
+							"value": "anytime",
+							"type": "text"
+						},
+						{
+							"key": "cabinClass",
+							"value": "business",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "children",
+							"value": "0",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "infants",
+							"value": "0",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "country",
+							"value": "IN",
+							"type": "text"
+						},
+						{
+							"key": "currency",
+							"value": "INR",
+							"type": "text"
+						},
+						{
+							"key": "locale",
+							"value": "en-US",
+							"type": "text"
+						},
+						{
+							"key": "originplace",
+							"value": "IDEL-sky",
+							"type": "text"
+						},
+						{
+							"key": "destinationplace",
+							"value": "ICCU-sky",
+							"type": "text"
+						},
+						{
+							"key": "outboundpartialdate",
+							"value": "anytime",
+							"type": "text"
+						},
+						{
+							"key": "adults",
+							"value": "1",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "https://us-central1-workflows-backend.cloudfunctions.net/webApi/api/v1/browsedates",
+					"protocol": "https",
+					"host": [
+						"us-central1-workflows-backend",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"webApi",
+						"api",
+						"v1",
+						"browsedates"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SaveUserQuery",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "inboundpartialdate",
+							"value": "anytime",
+							"type": "text"
+						},
+						{
+							"key": "country",
+							"value": "IN",
+							"type": "text"
+						},
+						{
+							"key": "currency",
+							"value": "INR",
+							"type": "text"
+						},
+						{
+							"key": "locale",
+							"value": "en-US",
+							"type": "text"
+						},
+						{
+							"key": "originplace",
+							"value": "IDEL-sky",
+							"type": "text"
+						},
+						{
+							"key": "destinationplace",
+							"value": "ICCU-sky",
+							"type": "text"
+						},
+						{
+							"key": "outboundpartialdate",
+							"value": "anytime",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "aritranag20@gmail.com",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://us-central1-workflows-backend.cloudfunctions.net/webApi/api/v1/senduserquery",
+					"protocol": "https",
+					"host": [
+						"us-central1-workflows-backend",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"webApi",
+						"api",
+						"v1",
+						"senduserquery"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "FetchUserQuery",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://us-central1-workflows-backend.cloudfunctions.net/webApi/api/v1/fetchuserquery?email=aritranag20@gmail.com&originplace=STOC-sky&destinationplace=GOTH-sky",
+					"protocol": "https",
+					"host": [
+						"us-central1-workflows-backend",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"webApi",
+						"api",
+						"v1",
+						"fetchuserquery"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "aritranag20@gmail.com"
+						},
+						{
+							"key": "originplace",
+							"value": "STOC-sky"
+						},
+						{
+							"key": "destinationplace",
+							"value": "GOTH-sky"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateUserQuery",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "aritranag20@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "originplace",
+							"value": "IDEL-sky",
+							"type": "text"
+						},
+						{
+							"key": "destinationplace",
+							"value": "ICCU-sky",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://us-central1-workflows-backend.cloudfunctions.net/webApi/api/v1/updateuserquery",
+					"protocol": "https",
+					"host": [
+						"us-central1-workflows-backend",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"webApi",
+						"api",
+						"v1",
+						"updateuserquery"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ShortendTinyURL",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "fullUrl",
+							"value": "https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browseroutes/v1.0/IN/INR/en-US/IDEL-sky/ICCU-sky/anytime/",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://us-central1-workflows-backend.cloudfunctions.net/webApi/api/v1/shortenurlofapi",
+					"protocol": "https",
+					"host": [
+						"us-central1-workflows-backend",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"webApi",
+						"api",
+						"v1",
+						"shortenurlofapi"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
