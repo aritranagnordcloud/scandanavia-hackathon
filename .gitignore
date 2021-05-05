@@ -1,9 +1,2 @@
-node_modules
-functions/*
-!functions/src
-!functions/test
-!functions/jest.config.js
-!functions/package.json
-!functions/tsconfig.json
-!functions/tslint.json
-*.log
+hideme.txt
+public-key.gpg

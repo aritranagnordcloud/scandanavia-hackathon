@@ -3,7 +3,9 @@ import * as request from "request";
 import * as unirest from "unirest";
 import * as admin from 'firebase-admin';
 
-var api_key = "2b0dffa068mshdb868caff516f00p1a40d1jsnfd9db792b255";
+// Present in the git secret
+var api_key = "abvc";
+
 var api_host = "skyscanner-skyscanner-flight-search-v1.p.rapidapi.com";
 
 

@@ -8,5 +8,4 @@
 - npm run localrun
 3. Deploying the functions 
 - firebase deploy --only functions
-
-
+4. Before Running API key needs to be revoked from git secrets
